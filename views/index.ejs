@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+
+    <title>Short | Link</title>
+  </head>
+  <body>
+    <div class="conrainer-fluid sticky-top">
+      <!-- Image and text -->
+      <nav
+        style="background-color: gray"
+        class="navbar sticky-top navbar-light bg-light"
+      >
+        <a class="navbar-brand" href="#"> URL Shorter </a>
+      </nav>
+    </div>
+    <div class="container">
+      <form action="/shortUrl" method="POST" class="my-5">
+        <div class="form-group">
+          <label for="fullurl" class="sr-only">Url</label>
+          <input
+            required
+            class="form-control mb-2"
+            type="url"
+            name="fullurl"
+            id="fullurl"
+          />
+          <small class="form-text text-muted">Put Your Full Url</small>
+        </div>
+        <button type="submit" class="btn btn-success">Shrink</button>
+      </form>
+      <!-- table-responsive -->
+      <table class="table table-hover table-responsive-sm table-striped">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Full Url</th>
+            <th scope="col">Short Url</th>
+            <th scope="col">Clicks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% shortUrls.forEach(shortUrl => { %>
+          <tr>
+            <th scope="row">
+              <a
+                href="<%= shortUrl.Short %>"
+                onclick="copyURI(event)"
+                type="button"
+                class="btn btn-outline-info"
+              >
+                copy
+              </a>
+            </th>
+            <td>
+              <a href="<%= shortUrl.Full %>"><%= shortUrl.Full %> </a>
+            </td>
+            <td>
+              <a href="<%= shortUrl.Short %>"><%= shortUrl.Short %></a>
+            </td>
+            <td><%= shortUrl.clicks %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <script>
+      function copyURI(evt) {
+        evt.preventDefault();
+        navigator.clipboard
+          .writeText(window.location.href + evt.target.getAttribute("href"))
+          .then(
+            () => {
+              console.log("sucsess");
+              /* clipboard successfully set */
+            },
+            () => {
+              console.log("a7a");
+
+              /* clipboard write failed */
+            }
+          );
+      }
+    </script>
+  </body>
+</html>

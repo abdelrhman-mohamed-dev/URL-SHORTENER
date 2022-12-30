@@ -1,0 +1,23 @@
+{
+  "name": "url-shorter",
+  "version": "1.0.0",
+  "description": "URL Shortener using node js and mangodb",
+  "main": "index.js",
+  "scripts": {
+    "watch": "nodemon app.js"
+  },
+  "author": "Abdelrhman Mohamed",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "mongoose": "^6.6.5",
+    "shortid": "^2.2.16"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "engines": {
+    "node": "16.17.0"
+  }
+}
